@@ -1,5 +1,8 @@
 const database = require('../models')
 
+const { hash } = require('bcryptjs') // importando biblioteca
+
+const uuid = require('uuid')
 class UsuarioService {
 
     async cadastrar(dto){
@@ -12,6 +15,25 @@ class UsuarioService {
         if (usuario) {
             throw new Error('Usuario ja cadastrado')
         }
+
+        try {
+
+            const senhaHash = await hash(dto.senha, 8)
+
+            const novoUsuario = await database.usuarios.create({
+            id: uuid.v4(),
+            nome: dto.nome,
+            email: dto.email,
+            senha: senhaHash
+            })
+
+        return novoUsuario
+            
+        } catch (error) {
+            throw new Error('Erro ao tentar cadastrar usuario')
+        }
+
+        
     }
 }
 
