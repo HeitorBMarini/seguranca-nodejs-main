@@ -8,13 +8,16 @@ const auth = require('./authRoute')
 
 const role = require('./role')
 
+const permissao = require('./permissao')
+
 module.exports = app => {
   app.use(
     bodyParser.json(),
     auth,
     produto,
     usuario,
-    role
+    role,
+    permissao
     
   )
 }
