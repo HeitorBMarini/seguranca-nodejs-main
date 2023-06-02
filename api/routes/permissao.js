@@ -10,4 +10,4 @@ router
     .delete('/permissao/:id')
     .put('/permissao/:id')
 
-modules.exports = router
+    module.exports = router

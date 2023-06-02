@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'usuario_roles',
         foreignKey: 'usuario_id'
       })
-      usuarios.belongsToMany(modles.permissoes,{
+      usuarios.belongsToMany(models.permissoes,{
         through: models.usuarios_permissoes,
         as: 'usuario_permissoes',
         foreignKey: 'usuario_id'
